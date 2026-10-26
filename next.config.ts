@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   basePath,
   assetPrefix: basePath,
-  images: { unoptimized: true },
+  images: { loader: "custom", loaderFile: "./src/lib/image-loader.ts" },
   // Cache Components / partial prerendering are not available in export mode.
   turbopack: {
     root: __dirname,
