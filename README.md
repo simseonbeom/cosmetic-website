@@ -12,7 +12,7 @@ Built with Next.js (App Router), TypeScript and Tailwind CSS v4. Motion uses Len
 | `/product` | 제품 상세 — gallery, specs, ingredients, routine, 전성분 / 정보제공고시 / FAQ |
 | `/story` | 브랜드 스토리 |
 | `/ingredients` | 성분 이야기 |
-| `/opengraph-image` | SNS 공유 이미지 (generated at build) |
+| `/opengraph-image.png` | SNS 공유 이미지 (static PNG in `src/app/`) |
 
 ## Project layout
 
@@ -29,6 +29,10 @@ Built with Next.js (App Router), TypeScript and Tailwind CSS v4. Motion uses Len
 ## Placeholders
 
 Values in square brackets (`[가격]`, `[상호]`, `[전화번호]`, store URL `#`) are awaiting real data. Most live in `src/lib/site.ts` and `src/content/product.ts`.
+
+## Deploying
+
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds a static export (`next build` → `out/`) with `NEXT_PUBLIC_BASE_PATH=/cosmetic-website` and publishes it to GitHub Pages. Assets referenced from plain tags go through `asset()` in `src/lib/assets.ts` so they pick up the base path.
 
 ## Scripts
 

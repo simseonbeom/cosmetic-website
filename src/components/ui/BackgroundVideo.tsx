@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { asset } from "@/lib/assets";
 
 type Props = {
   src: string;
@@ -41,8 +42,8 @@ export function BackgroundVideo({ src, poster, className = "", position = "50% 5
   return (
     <video
       ref={ref}
-      src={src}
-      poster={poster}
+      src={asset(src)}
+      poster={asset(poster)}
       autoPlay
       muted
       loop
