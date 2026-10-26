@@ -101,8 +101,22 @@ export default function StoryPage() {
         </section>
 
         {/* Principles */}
-        <section aria-labelledby="principles" className="px-6 pb-[clamp(80px,11vw,160px)]">
-          <Container className="flex flex-col gap-12">
+        <section
+          aria-labelledby="principles"
+          className="relative overflow-hidden px-6 pb-[clamp(80px,11vw,160px)]"
+        >
+          <Parallax
+            speed={-0.06}
+            className="pointer-events-none absolute right-[clamp(0px,0.35vw,5px)] bottom-[clamp(12px,1.7vw,24px)] z-0 select-none"
+          >
+            <span
+              aria-hidden
+              className="block font-display text-[clamp(96px,12vw,173px)] leading-[1.15] font-semibold tracking-[-0.02em] whitespace-nowrap text-black/5"
+            >
+              Story
+            </span>
+          </Parallax>
+          <Container className="relative z-10 flex flex-col gap-12">
             <Reveal>
               <Eyebrow as="h2" id="principles">
                 OUR PRINCIPLES
