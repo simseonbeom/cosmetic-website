@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* PLAIN design tokens — warm greige palette from the brand design */
+@theme {
+  --color-sand: #e8e3db; /* page ground */
+  --color-sand-2: #e9e3da; /* hero ground */
+  --color-paper: #f4f1eb; /* light panel */
+  --color-paper-2: #efebe4; /* alt light panel */
+  --color-cream: #fbfaf7; /* product showcase card */
+  --color-ink: #2a2825; /* primary text / dark sections */
+  --color-ink-2: #4a443d; /* accent, buttons */
+  --color-muted: #625c55; /* secondary text */
+  --color-line: #d6cfc4; /* hairlines on light */
+  --color-line-dark: #4a443d; /* hairlines on dark */
+  --color-muted-dark: #c9c2b7; /* secondary text on dark */
+  --color-tan: #d1c0aa;
+  --color-stone: #b0a99e;
+
+  --font-sans: var(--font-pretendard), "Apple SD Gothic Neo", "Noto Sans KR",
+    sans-serif;
+  --font-display: var(--font-montserrat), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --radius-pill: 999px;
+
+  --ease-plain: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-rise: rise 0.9s var(--ease-plain) both;
+  --animate-rise-2: rise 0.9s 0.15s var(--ease-plain) both;
+  --animate-rise-3: rise 0.9s 0.3s var(--ease-plain) both;
+  --animate-float: float 3.6s ease-in-out infinite alternate;
+  --animate-marquee: marquee 36s linear infinite;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes float {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-sand);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    font-family: var(--font-sans);
+    word-break: keep-all;
+    min-width: 0;
+  }
+  a {
+    color: var(--color-ink);
+  }
+  a:hover {
+    color: var(--color-ink-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-rise-2,
+  .animate-rise-3,
+  .animate-float,
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/* Hover fill for buttons: ink sweeps in from the left (see ui/Button.tsx) */
+.btn-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s var(--ease-plain);
+}
+.btn-fill-light::before {
+  background: var(--color-paper);
+}
+.btn-fill:hover::before {
+  transform: scaleX(1);
+}
+
+/* Footer links: underline draws from left to right on hover */
+.link-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.1em;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s var(--ease-plain);
+}
+.link-draw:hover::after {
+  transform: scaleX(1);
+}
+
+/* Horizontal carousel track without a visible scrollbar */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-fill::before,
+  .link-draw::after {
+    transition: none;
+  }
+}
